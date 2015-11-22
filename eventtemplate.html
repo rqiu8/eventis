@@ -1,0 +1,52 @@
+<body>
+    {{> listTemplate}}
+</body>
+
+
+
+<template name='listTemplate'>
+    {{#each elist}}
+    <div id="wrapper">
+        <img src="https://www.heyfargo.com/wp-content/uploads/2015/07/SEO-Meme-content.jpg" alt="eventimg" style="width:304px;height:228px;">
+        <p id="infoRow1">
+            {{name}}
+            <button type='button' name='Attending'> Attending? </button>
+        </p>
+        <p id="infoRow2"> 
+        {{address}}
+        {{date}}
+        </p>
+        <script id="clpsbttnScrpt" type="text/javascript">
+            function toggleMe(a){
+                var e=document.getElementById(a);
+                if(!e)return true;
+                if(e.style.display=="none"){
+                    e.style.display="block"
+                }
+                else{
+                    e.style.display="none"
+                }
+                return true;
+            }
+        </script>
+        <input id= "clpsbttn" type="button" onclick="return toggleMe('description')" value="Toggle"><br>
+        <p id="description">
+            {{descr}}
+        </p>
+        {{> tagsTemplate}}
+        <!-- {{> comments2}}-->
+    </div>
+    {{/each}}
+</template>
+
+
+
+<template name='tagsTemplate'>
+    {{#each tags}}
+    <button type='button' name='{{this}}'> {{this}}</button>
+    {{/each}}
+</template>
+
+
+
+
