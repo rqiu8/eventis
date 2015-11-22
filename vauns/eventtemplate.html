@@ -1,0 +1,36 @@
+<template name='tagsTemplate'>
+    {{#each tags}}
+    <button type='button' name='{{this}}'> {{this}}</button>
+    {{/each}}
+</template>
+<template name='eventTemplate'>
+        <div id="wrapper">
+        <p id="infoRow1">
+            {{name}}
+            <button type='button' name='Attending'> Attending? </button>
+        </p>
+        <p id="infoRow2"> 
+            {{address}}
+            {{date}}
+        </p>
+ <!--       <script id="clpsbttnScrpt" type="text/javascript">
+            function toggleMe(a){
+                var e=document.getElementById(a);
+                if(!e)return false;
+                if(e.style.display=="none"){
+                    e.style.display="block"
+                }
+                else{
+                    e.style.display="none"
+                }
+                return false;
+            }
+        </script> -->
+        <input id= "clpsbttn" type="button" onclick="return toggleMe('description')" value="Toggle"><br>
+        <p class='{{_id}}' id="description">
+            {{descr}}
+        </p>
+        {{> tagsTemplate}}
+        <!-- {{> comments2}}-->
+    </div>
+</template>
