@@ -1,7 +1,3 @@
-Router.configure({
-    layoutTemplate: 'main'
-});
-
 if (Meteor.isClient) {
     //initially set fparam to empty
     Session.setDefault('fparam', '');
@@ -9,6 +5,7 @@ if (Meteor.isClient) {
         //find user geo-location
         geoloc: function() {
             var gloc = Geolocation.latLng();
+            Session.set('geo', gloc)
             return gloc;
         }
     });
@@ -21,7 +18,7 @@ if (Meteor.isClient) {
             //suscribe to EventDB data from eventsList, pass the fparam value as argument
             Meteor.subscribe('eventsList', Session.get('fparam'));
             //client-side sorting can take place here
-            var cursor = EventDB.find();
+            var cursor = EventDB.find({});
             return cursor;
         }
     });
@@ -33,6 +30,8 @@ if (Meteor.isClient) {
         'submit #search': function(event){
             event.preventDefault();
             Session.set('fparam', $('[name="searchbar"]').val());
+            //if searchbar moves with scroll, uncomment below
+            //$('*').animate({ scrollTop: 0 }, "slow");
         }
     });
 }

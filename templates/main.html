@@ -4,9 +4,11 @@
 </template>
 
 <template name='eventListing'>
-    {{#each eventlist}}
-    {{> elist}}
-    {{/each}}
+    <div class='listings'>
+        {{#each eventlist}}
+            {{> elist}}
+        {{/each}}
+    </div>
 </template>
 
 <template name='elist'>

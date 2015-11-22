@@ -13,18 +13,15 @@
 }
 
 .header {
-    position: relative;
+    position: inherit;
     width: 100%;	
     z-index: 200;
     background-color: #3B6EBC;
-    background-color: #3B6EBC;
-
 }
 
 h1 {
-    position: fixed;
     top: 0;
-    width: 100%;
+    width: 10%;
     margin: 0;
     padding-left: 15px;
     padding-top: 5px;
@@ -32,14 +29,17 @@ h1 {
     background-color: #3B6EBC;
     color: #FFFFFF;
     font-weight: 300;
+    /* placed in */
+    display: inline;
 }
 
-h1 : hover {
-    span : pointer;
+h1:hover {
+    cursor: pointer;
 }
 
 #search {
-    position: fixed;
+    position: inherit;
+    display: inline;
     left: 180px;
     top: 9px;
     width: 300px;
