@@ -6,18 +6,10 @@
 <template name='eventListing'>
     <div class='listings'>
         {{#each eventlist}}
-            {{> elist}}
+            {{> eventTemplate}}
         {{/each}}
     </div>
 </template>
-
-<template name='elist'>
-    <br>
-    <p>{{name}}</p>
-    <p>{{descr}}</p>
-
-</template>
-
 <template name='home'>
     {{> eventListing}}
 </template>
