@@ -1,4 +1,5 @@
 EventDB = new Mongo.Collection('eventslist');
+OrgDB = new Mongo.Collection('orgslist');
 if(Meteor.isServer){
     //these are the index fields that the search runs off of
     EventDB._ensureIndex({
@@ -7,18 +8,21 @@ if(Meteor.isServer){
     });
 
     //generate list of events from db and send to client
-    Meteor.publish('eventsList', function(fparam){
+    Meteor.publish('eventsList', function(fparam,geo, date, org){
+        if (org){
+            return EventDB.find({poster:org});
+        }
         //if argument string empty, return all documents in DB
-        if (!fparam){
+        else if (!fparam){
             console.log('retrieving all entries')
             console.log(fparam);
-            return EventDB.find();
+            return EventDB.find({datetime : {$gte: date}});
         }
         //if input is a string, search for it and return all search results
         else if (typeof(fparam)==='string'){
             console.log('searched');
             console.log('fparam');
-            return EventDB.find({ $text: {$search: fparam}},
+            return EventDB.find({ $text: {$search: fparam},datetime : {$gte: date}},
                 {
                 //determines which documents are best match for search
                 fields: {
@@ -30,7 +34,21 @@ if(Meteor.isServer){
         }
         //if object(i.e. an array), convert to string and find matching tags
         else if (typeof(fparam)==='object'){
-            return EventDB.find({tags: String(fparam)});
+            return EventDB.find({tags: String(fparam),datetime : {$gte: date}});
+        }
+    });
+    Meteor.publish('orgsList', function(){
+        return OrgDB.find();
+    });
+    Meteor.methods({
+        'attendEvent': function(eventId){
+            EventDB.update({'_id':eventId},{$inc:{'num':1}});
+        },
+        'addEvent': function(data){
+            EventDB.insert(data);
+        },
+        'addOrg': function(data){
+            OrgDB.insert(data);
         }
     });
 }

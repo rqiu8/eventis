@@ -1,0 +1,13 @@
+<template name='orgPage'>
+    <img class='pic' src='eventlogo' alt="eventimg" style="width:304px;height:228px;">
+    <div name='orgInfo'>
+        <h2 class='orgTitle'>
+            {{poster}}
+        </h2>
+        <div class='orgDescr'>
+            {{descr}}
+        </div>
+    </div>
+    <p name='orgEvents'><b> Upcoming Events </b></p>
+    {{>eventTemplate}}
+</template>

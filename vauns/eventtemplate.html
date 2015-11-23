@@ -1,36 +1,69 @@
-<template name='tagsTemplate'>
-    {{#each tags}}
-    <button type='button' name='{{this}}'> {{this}}</button>
-    {{/each}}
-</template>
 <template name='eventTemplate'>
-        <div id="wrapper">
-        <p id="infoRow1">
-            {{name}}
-            <button type='button' name='Attending'> Attending? </button>
-        </p>
-        <p id="infoRow2"> 
-            {{address}}
-            {{date}}
-        </p>
- <!--       <script id="clpsbttnScrpt" type="text/javascript">
-            function toggleMe(a){
-                var e=document.getElementById(a);
-                if(!e)return false;
-                if(e.style.display=="none"){
-                    e.style.display="block"
-                }
-                else{
-                    e.style.display="none"
-                }
-                return false;
-            }
-        </script> -->
-        <input id= "clpsbttn" type="button" onclick="return toggleMe('description')" value="Toggle"><br>
-        <p class='{{_id}}' id="description">
-            {{descr}}
-        </p>
-        {{> tagsTemplate}}
-        <!-- {{> comments2}}-->
+    <div id="eventWrapper">
+        <div id="event">
+            <div id = "dateWrapper">
+                <div id = "date">
+                    {{dateF}}
+                </div>
+                <div id = "time">
+                    {{time}}
+                </div>
+            </div>
+            <div id = "eventTitle">
+                {{name}}
+                <br>
+                <a id='theposter' href="#" value='{{posterID}}'>{{poster}}</a>
+            </div>
+            <br><br>
+            {{#each tags}}
+            <a href="#">
+                <div name="{{this}}" class = "tag">
+                    {{this}}
+                </div>
+            </a>
+            {{/each}}   
+
+            <div id = "eventLocation">
+                {{address}}
+            </div>
+            <div id = "attending">
+                <div id = "num">
+                    {{num}}
+                </div>
+                <div id = "button">Attending</div>
+            </div>
+        </div>
     </div>
 </template>
+<template name="submit">
+    <h2>Create a New Event</h2>
+    <form id='createEvent'>
+        Poster:<br>
+        <input type="text" id="crPoster" class='crField' placeholder="Title">
+        <br>
+        Title:<br>
+        <input type="text" id="crTitle" class='crField' placeholder="Title">
+        <br>
+        Location:<br>
+        <input type="text" id="crLocation" class='crField' placeholder="Location">
+        <br>
+        Description:<br>
+        <input type="text" id="crInfo" class='crField' placeholder="Description">
+        <br>
+        Tags:<br>
+        <input type="text" id="crTags" class='crField' placeholder="Insert tags">
+        <br>
+        Date:<br>
+        <input type="date" id="crDate">
+        <br>
+        Time:<br>
+        <input type="time" id="crTime">
+        <br>
+
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</template>
+
+
+

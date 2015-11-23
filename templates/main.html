@@ -1,10 +1,12 @@
 <template name='main'>
     {{> header}}
+    {{geoloc}}
     {{> yield}}
 </template>
 
 <template name='eventListing'>
     <div class='listings'>
+        {{> submit}}
         {{#each eventlist}}
             {{> eventTemplate}}
         {{/each}}
